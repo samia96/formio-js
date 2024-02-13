@@ -1,5 +1,5 @@
 {
-  "name": "@samia96/formio",
+  "name": "@samia/formio",
   "version": "5.0.0",
   "description": "JavaScript powered Forms with JSON Form Builder",
   "main": "lib/cjs/index.js && dist/index.js",
