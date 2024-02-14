@@ -2,8 +2,13 @@
   "name": "@samia96/formio",
   "version": "5.0.0",
   "description": "JavaScript powered Forms with JSON Form Builder",
-  "main": "lib/cjs/index.js && dist/index.js",
-  "module": "lib/mjs/index.js && dist/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "mocha --timeout 60000 --exit -r ts-node/register test/**/*.spec.ts",
+    "build": "tsc",
+    "deploy": "npm publish"
+  },
   "exports": {
     ".": {
       "import": "./lib/mjs/index.js",
@@ -26,7 +31,6 @@
       "require": "./lib/cjs/formio.embed.js"
     }
   },
-  "types": "index.d.ts",
   "files": [
     "dist",
     "lib",
@@ -36,51 +40,13 @@
   "pre-commit": [
     "lint"
   ],
-  "scripts": {
-    "build": "tsc",
-    "doc": "esdoc",
-    "dist": "gulp clean:dist && webpack --config webpack.config.js && webpack --config webpack.prod.js && gulp build",
-    "lib": "gulp clean:lib && tsc --project tsconfig.cjs.json && tsc --project tsconfig.mjs.json && yarn lib:package",
-    "lib:package": "node ./libpackage.js",
-    "version": "node -e 'console.log(require(`./package.json`).version)'",
-    "build-app": "yarn build-app:create-app && yarn build-app:jekyll && yarn build-app:remove-app",
-    "build-app:create-app": "node -e 'var fs=require(`fs`);fs.writeFileSync(`./_config.app.yml`, `baseurl: /` + require(`./package.json`).version + `/`);'",
-    "build-app:remove-app": "rm ./_config.app.yml",
-    "build-app:jekyll": "jekyll build --config _config.yml,_config.app.yml",
-    "gh-pages": "rm -rf _site && npm run build && jekyll build --config _config.yml && cd _site && git init && git remote add origin git@github.com:formio/formio.js.git && git checkout -b gh-pages && git add . && git commit -m \"Deploy to GitHub Pages\" && git push origin gh-pages --force && cd ..",
-    "deploy-s3": "$(node -e 'process.stdout.write(`aws s3 cp _site s3://formiojs.test-form.io/` + require(`./package.json`).version + `/ --recursive`)') && npm publish",
-    "invalidate": "VERSION=$(yarn version);aws cloudfront create-invalidation --distribution-id E1MXNA5A4ZKRMZ --paths \"/$VERSION/*\"",
-    "release": "yarn build-app && yarn deploy-s3",
-    "tag": "VERSION=$(yarn version);git add -A; git commit -m \"Build $Version\";git push origin master;git tag v$VERSION;git push origin --tags;",
-    "dopublish": "npm run build && npm run tag && npm publish",
-    "lint": "gulp eslint",
-    "serve": "jekyll serve --config _config.yml,_config.dev.yml",
-    "test": "mocha --timeout 60000 --exit -r ts-node/register test/**/*.spec.ts",
-    "test:updateRenders": "npm run lib && TZ=UTC node --require jsdom-global/register test/updateRenders.js",
-    "test:e2e": "NODE_OPTIONS=\"--max-old-space-size=4096\" karma start --verbose --single-run"
-  },
-  "keywords": [
-    "typescript",
-    "github packages",
-    "npm packages",
-    "boilerplate"
-  ],
+
   "author": "Sami koto",
   "license": "MIT",
   "repository": {
     "type": "module",
-    "url": "git+https://github.com/samia96/formio.git"
+    "url": "git+https://github.com/samia96/formio-js.git"
   },
-  "contributors": [
-    "Form.io Open Source Community (https://github.com/formio/formio.js/graphs/contributors)"
-  ],
-  "bugs": {
-    "url": "https://github.com/formio/formio.js/issues"
-  },
-  "browser": {
-    "vm": false
-  },
-  "homepage": "https://github.com/formio/formio.js#readme",
   "dependencies": {
     "@formio/bootstrap": "^3.0.0-rc.20",
     "@formio/choices.js": "^10.2.0",
@@ -186,6 +152,7 @@
     "webpack-stream": "^7.0.0",
     "written-number": "^0.11.1"
   },
+
   "engines": {
     "node": ">=8"
   },
