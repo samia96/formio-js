@@ -1,6 +1,6 @@
 {
   "name": "@samia96/formio",
-  "version": "2.2.0",
+  "version": "5.2.3",
   "description": "JavaScript powered Forms with JSON Form Builder",
   "main": "lib/cjs/index.js",
   "types": "index.d.ts",
