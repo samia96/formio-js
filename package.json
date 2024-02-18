@@ -62,7 +62,7 @@
   "license": "MIT",
   "repository": {
     "type": "module",
-    "url": "git+https://github.com/samia96/new_package.git"
+    "url": "git+https://github.com/samia96/formio-js.git"
   },
   "dependencies": {
     "@formio/bootstrap": "^3.0.0-rc.20",
@@ -181,7 +181,7 @@
     "test": "test"
   },
   "bugs": {
-    "url": "https://github.com/samia96/new_package/issues"
+    "url": "https://github.com/samia96/formio-js/issues"
   },
-  "homepage": "https://github.com/samia96/new_package#readme"
+  "homepage": "https://github.com/samia96/formio-js#readme"
 }
